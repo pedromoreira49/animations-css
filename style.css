@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* LAYOUT */
+  .container {
+    width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    display: block;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  
+  
+  /******* QUESTÃO 1 *******/
+  /* INPUT */
+  input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-bottom: solid 1px;
+    margin-bottom: 15px;
+    padding: 5px;
+    transition: border-bottom 0.5s linear;
+  }
+  
+  input::placeholder {
+    color: #000;  
+  }
+  
+  .input-group label {
+    position: relative;
+    top: -40px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  input:focus {
+    outline: 0;
+    border-bottom: solid 3px;
+    transition: border-bottom 0.5s step-end;
+  }
+  
+  input:focus ~ label {
+    opacity: 1;
+    visibility: visible;
+    top: -60px;
+    transition: all 100ms linear;
+  }
+  
+  input:focus::placeholder {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  /* BUTTON */
+  button {
+    outline: 0;
+    width: 100px;
+    height: 40px;
+    background-color: #808080;
+    color: #1e1e1e;
+    border: 0px;
+    border-bottom: 0px;
+    padding-bottom: 10px;
+    transition: padding-top 0.5s ease, box-shadow 1 s linear;
+  }
+  
+  button:hover {
+    box-shadow: 0px 0px 10px #000;
+    background-color: #000;
+    padding-top: 5px;
+    color: white;
+    border-left: 20px solid #000;
+    border-right: 20px solid #000;
+    transition: border-left 1s ease-out, border-right 1s ease-out, background-color 1s ease, box-shadow 1ms linear;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+    font-weight: bold;
+  }
+  
+  /******* QUESTÃO 2 - 3*******/
+  #questao2, #questao3 > div{
+    width: 150px;
+    height: 150px;
+  }
+  
+  #questao2 {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #0f0;
+    border-radius: 100px;
+    border-top: 4px solid #3f3;
+    border-bottom: 1px solid #090;
+    animation: loading 2s linear infinite;
+  }
+
+
+  
+  #questao3 {
+    width: 105px;
+    margin: 0 auto;
+    text-align: center; 
+    border: dotted 2px #1e1e1e;
+  }
+  
+  #questao3 > div {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #0f0;
+    border-radius: 100px;
+    border-top: 4px solid #3f3;
+    border-bottom: 1px solid #090;
+  }
+  
+  #questao3 > div:hover {
+    animation: loading 2s linear infinite;
+    animation-play-state: running;
+  }
+  
+  @keyframes loading { 
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }
+  
+  /******* QUESTÃO 5 *******/
+  #questao5{
+    width: 500px;
+    height: 40px;
+    border: solid 3px #1e1e1e;
+  }
+  
+  #questao5 div {
+    width: 494px;
+    height: 34px;
+    animation: sidebar 3s linear paused;
+  }
+  
+  #questao5 div:hover{
+    animation-play-state: running;
+  }
+  
+  @keyframes sidebar {
+    0% {border-left: solid 0px red;}
+    10% {border-left: solid 50px red;}
+    20% {border-left: solid 100px red;}
+    30% {border-left: solid 150px red;}
+    40% {border-left: solid 200px red;}
+    50% {border-left: solid 250px red;}
+    60% {border-left: solid 300px red;}
+    70% {border-left: solid 350px red;}
+    80% {border-left: solid 400px red;}
+    90% {border-left: solid 450px red;}
+    100% {border-left: solid 494px red;}
+  }
+  
+  #questao6 {
+    border: 3px dotted #1e1e1e;
+    width: 500px;
+    height: 500px;
+    position: relative;
+  }
+
+  #questao6 div {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .goblin-down{
+    background-image: url(goblin_big.png);
+    width: 160px;
+    height: 170px;
+    top: 8px;
+    left: 16px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    animation: down 1s step-end;
+  }
+
+  @keyframes down{
+    0%,100%{
+        visibility: visible;
+        background-position: 0px 0px;
+        transform: translateY(0px);
+    }
+    25%{
+        background-position: -170px 0px;
+        transform: translateY(80px);
+    }
+    50%{
+        background-position: -330px 0px;
+        transform: translateY(160px);
+    }
+    75%{
+        background-position: -170px 0px;
+        transform: translateY(320px);
+    }
+}
+
+  .goblin-up{
+    background-image: url(goblin_big.png);
+    width: 160px;
+    height: 170px;
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    animation: up 1s step-end 2s;
+  }
+
+  @keyframes up{
+    0%, 100%{
+        visibility: visible; 
+        background-position: 0px -180px;
+        transform: translate(0px, 0px);
+    }
+    25%{
+        background-position: -170px -180px;
+        transform: translate(0px, -80px);
+    }
+    50%{
+        background-position: -325px -180px;
+        transform: translate(0px, -160px);
+    }
+    75%{
+        background-position: -170px -180px;
+        transform: translate(0px, -320px);
+    }
+}
+
+  .goblin-right{
+    background-image: url(goblin_big.png);
+    width: 160px;
+    height: 170px;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    animation: right 1s step-end 1s;
+  }
+
+  @keyframes right{
+    0%, 100%{
+        visibility: visible; 
+        background-position: 0px -360px;
+        transform: translate(0px, 0px);
+    }
+    25%{
+        background-position: -170px -360px;
+        transform: translate(80px, 0px);
+    }
+    50%{
+        background-position: -325px -360px;
+        transform: translate(160px, 0px);
+    }
+    75%{
+        background-position: -170px -360px;
+        transform: translate(320px, 0px);
+    }
+}
+
+  
+  .goblin-left{
+    background-image: url(goblin_big.png);
+    width: 160px;
+    height: 170px;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    animation: left 1s step-end 3s;
+  } 
+
+  @keyframes left{
+    0%, 100%{
+        visibility: visible; 
+        background-position: 0px -540px;
+        transform: translate(0px, 0px);
+    }
+    25%{
+        background-position: -170px -540px;
+        transform: translate(-80px, 0px);
+    }
+    50%{
+        background-position: -325px -540px;
+        transform: translate(-160px, 0px);
+    }
+    75%{
+        background-position: -170px -540px;
+        transform: translate(-320px, 0px);
+    }
+}
