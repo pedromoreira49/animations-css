@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas width="600" height="400" style="border: 1px solid #000">
+
+    </canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function circ(ctx, x, y, r, l, color, fill = false){
+            ctx.lineWidth = l;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI/180*360);
+            if(fill == false){
+                ctx.fillStyle = '#fff';
+            }else{
+                ctx.fillStyle = fill;
+            }
+            ctx.strokeStyle = color;
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        circ(ctx, 100, 50, 30, 5, '#f00');
+        circ(ctx, 200, 50, 40, 10, '#00f', '#0f0');
+    </script>
+</html>
