@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas width="600" height="400" style="border: 1px solid #000">
+        
+    </canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function triEqui(ctx, x, y, l, color = '#000', rev = false){
+            h = l * (Math.sqrt(3)/2);
+
+            if (rev == false) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + (l / 2), y + h);
+                ctx.lineTo(x - (l / 2), y + h);
+                ctx.closePath();
+                ctx.fillStyle = color;
+                ctx.fill();
+            } else {
+                ctx.beginPath();
+                ctx.moveTo(x, y + h);
+                ctx.lineTo(x + (l / 2), y);
+                ctx.lineTo(x - (l / 2), y);
+                ctx.closePath();
+                ctx.fillStyle = color;
+                ctx.fill();
+            } 
+        }
+
+        triEqui(ctx, 100, 10,  80, '#000');
+        triEqui(ctx, 200, 10,  80, '#0f0', true);
+
+    </script>
+</html>
