@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas width="600" height="400" style="border: 1px solid #000">
+        
+    </canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function sol (ctx, canvas) {
+            //retangulo de baixo
+            ctx.fillStyle = '#0f1d35';
+            ctx.fillRect(0, 150, canvas.width, canvas.height / 2);
+
+            /****** REFLEXO ******/
+            //gradiente
+            let fundoGradiente = ctx.createRadialGradient(300, 300, 0, 300, 300, 200);
+            fundoGradiente.addColorStop(.2, '#cdd9ff');
+            fundoGradiente.addColorStop(.6, '#7394ff');
+                fundoGradiente.addColorStop(.8, '#0f1d35');
+            
+            //meio circulo
+            ctx.lineWidth = 0;
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height + (canvas.height / 20), canvas.height / 1.7, (Math.PI/180)*0, (Math.PI/180)*180, true);
+            ctx.fillStyle = fundoGradiente;
+            ctx.fill();
+            
+                ctx.shadowBlur = 0;
+
+            //retangulo de cima
+            ctx.fillStyle = '#120133';
+            ctx.fillRect(0, 0, canvas.width, canvas.height / 2);
+
+            /****** SOL ******/
+            let x = canvas.width/2;
+                let y = canvas.height/4;
+
+            //sombra
+            ctx.shadowColor = 'yellow';
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowBlur = 30;
+
+            //gradiente
+            let r1 = 60;
+                let r2 = 0;
+
+            let fundoSol = ctx.createRadialGradient(x,y,r1,x,y,r2);
+            fundoSol.addColorStop(.0, 'black');
+                fundoSol.addColorStop(.3, 'yellow');
+                fundoSol.addColorStop(.9, 'white');
+            
+            //circulo
+            ctx.lineWidth = 0;
+            ctx.beginPath();
+            ctx.arc(x, y, 50, (Math.PI/180)*0, (Math.PI/180)*360, true);
+            ctx.fillStyle = fundoSol;
+            ctx.fill();
+    
+        }
+
+        sol(ctx, canvas);
+    </script>
+</html>
