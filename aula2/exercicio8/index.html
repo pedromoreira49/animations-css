@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas width="600" height="400" style="border: 1px solid #000">
+        
+    </canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function quad(ctx, x, y, s, l, color, fill = false){
+            ctx.lineWidth = l;
+            ctx.strokeStyle = color;
+            ctx.strokeRect(x, y, s, s);
+            if(fill == false){
+                ctx.fillStyle = '#fff';
+            }else{
+                ctx.fillStyle = fill;
+            }
+            ctx.fillRect(x, y, s, s);
+        }
+
+        function writeCenter(ctx, cwidth, cheight, text, color = 'black', size = 12, family = 'serif', style = 'normal', base = 'alphabetic', grad = false) {
+            let textSize = 12;
+            if(size != 12) {
+                textSize = size;
+            }
+            
+            let textFamily = 'serif';
+            if(family != 'serif') {
+                textFamily = family;
+            }
+            
+            let textStyle = 'normal';
+            if(style != 'normal') {
+                textStyle = style;
+            }
+
+            ctx.font = `${textStyle} ${textSize}px ${textFamily}`;
+
+            if(base == 'alphabetic') {
+                ctx.textBaseline = 'alphabetic';
+            } else {
+                ctx.textBaseline = base;
+            }
+
+            let textMetric = ctx.measureText(text);
+
+            if (grad != false) {
+                ctx.fillStyle = grad;
+                ctx.strokeText(text, cwidth / 2 - textMetric.width / 2, cheight / 2 - textSize);	
+            }
+
+            if(color == 'black') {
+                ctx.fillStyle = 'black';
+            } else {
+                ctx.fillStyle = color;
+            }
+
+            ctx.fillText(text, cwidth / 2 - textMetric.width / 2, cheight / 2 - textSize)
+        }
+
+        function gradiente(ctx, canvas) {
+            let textSize = 30;
+            ctx.font = `bold ${textSize}px arial`;
+
+            let texto = "TRICOLOR";
+            let textMetric = ctx.measureText(texto);
+
+            let x0 = canvas.width / 2 - textMetric.width / 2;
+            let y0 = canvas.height / 2 - textSize;
+            let x1 = canvas.width / 2 + textMetric.width / 2;
+            let y1 = y0;
+
+            let textGradiente = ctx.createLinearGradient(x0,y0,x1,y1);
+            textGradiente.addColorStop(0,'blue');
+            textGradiente.addColorStop(.5, 'white');
+            textGradiente.addColorStop(1,'black');
+
+            let quadGradiente = ctx.createLinearGradient(x0,y0,x1,y1);
+            quadGradiente.addColorStop(0,'black');
+            quadGradiente.addColorStop(.5, 'white');
+            quadGradiente.addColorStop(1,'blue');
+
+            quad(ctx, 0, 0, 300, 0, 'black', quadGradiente);
+
+            writeCenter(ctx, canvas.width, canvas.height, texto, textGradiente, textSize, 'arial', 'bold', 'top', true);
+        }
+
+        gradiente(ctx, canvas);
+    </script>
+</html>
