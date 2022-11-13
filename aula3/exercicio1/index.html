@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400" style="border: 1px solid #000">
+
+    </canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function quad(ctx, x, y, s) { 
+            ctx.fillRect(x, y, s, s);
+        }
+
+        function quadMatriz (ctx, canvas) {
+            let x = 0;
+            let y = 0;
+            let lado = 190;
+            let contador = 1;
+
+            do {
+                do {
+                    ctx.fillStyle = 'black';
+
+                    ctx.shadowColor = "black";
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 0;
+                    ctx.shadowBlur = 50;
+            
+                    ctx.save();
+                    
+                    ctx.fillStyle = 'blue';
+                    ctx.shadowColor = "blue";
+            
+                    if(contador & 1) {
+                    ctx.restore();
+                    }
+            
+                    quad(ctx, x, y, lado);
+            
+                    x += lado;
+                    contador ++;
+                } while (x < canvas.width);
+
+                    x = 0;
+                    y += lado;
+                    if (lado > 20){
+                        lado /= 2;
+                    }
+            } while (y < canvas.height);
+        
+        }
+        quadMatriz (ctx, canvas);
+    </script>
+</html>
